@@ -1,0 +1,6 @@
+VM001:
+ssh -i "/c/Projeto Pos/VM001/ssh-key-2026-08-31.key" ubuntu@167.234.236.107
+
+VM002: 
+ssh -i "/c/Projeto Pos/VM002/ssh-key-2026-08-31.key" ubuntu@163.176.142.188
+

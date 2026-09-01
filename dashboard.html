@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SRE Observabilidade</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .content { margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        button { background-color: #dc3545; border: none; color: white; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #a71d2a; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Painel de Controle - VM001</h2>
+        <button onclick="handleLogout()">Sair</button>
+    </div>
+    <div class="content">
+        <h3>Bem-vindo ao Sistema de Observabilidade</h3>
+        <p>Status da infraestrutura: <strong>Operacional (Secure by Design)</strong></p>
+        <p>Servidor Web Nginx, Fail2Ban e Promtail ativos e integrados com a central VM002.</p>
+    </div>
+
+    <script>
+        // Validação de Sessão (Proteção OWASP contra Acesso Não Autorizado)
+        if (!sessionStorage.getItem('auth_token')) {
+            alert('Acesso negado! Faça login novamente.');
+            window.location.href = "index.html";
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('auth_token');
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
