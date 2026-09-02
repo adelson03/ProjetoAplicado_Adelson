@@ -1,34 +1,59 @@
-# Projeto Aplicado: Infraestrutura Cloud & Observabilidade SRE
-
-**Instituição:** Campus da Universidade Estadual de Ciências da Saúde de Alagoas - UNCISAL  
+# Projeto Aplicado: Práticas de Mercado
 **Curso:** Segurança da Informação e Análise Forense  
-**Matéria:** Projeto Aplicado: Práticas de Mercado  
+**Instituição:** Universidade Estadual de Ciências da Saúde de Alagoas (UNCISAL)  
 **Professor:** Ziraldo Aurélio Cardoso de Oliveira  
-
-**Aluno:** Adelson Eleotério Siqueira dos Santos  
-**Matrícula:** 20252ESPSIAF0001
-
-Repositório oficial para a arquitetura de alta disponibilidade e segurança baseada no conceito *Secure by Design*, desenvolvida em instâncias Oracle Cloud (Free Tier).
-
-## 🛠️ Arquitetura
-- **Eixo 1 (Infraestrutura)**: VM001 (Aplicação & Web Server): Hospeda o Nginx com HTTPS, Fail2Ban ativado para proteção SSH (4 tentativas / 24h) e Promtail para coleta de logs. VM002 (Central de Observabilidade): Centraliza as métricas e logs via Prometheus, Loki e Grafana.
-- **Eixo 2 (Versionamento)**: Código versionado no GitHub com regras restritas no `.gitignore` para proteção de dados sensíveis.
-- **Eixo 3 (Aplicação Segura)**: Protótipo web contendo tela de login, painel interno e botão de logout funcional.
+**Aluno/Desenvolvedor:** Adelson Eleotério Siqueira dos Santos (Matrícula: 20252ESPSIAF0001)  
 
 ---
 
-## 🛡️ Mitigações OWASP Top 10 Implementadas
+## 📋 Sobre o Projeto
+Este repositório contém o desenvolvimento da interface web segura, painel administrativo e a infraestrutura de suporte (Eixos de desenvolvimento e infraestrutura) do Projeto Aplicado. O sistema contempla mecanismos de autenticação restrita, controle de sessão via `sessionStorage`, identidade visual institucional padronizada, arquitetura em nuvem distribuída, observabilidade avançada e automação de entrega contínua (CI/CD).
 
-O projeto implementa defesas ativas contra vetores críticos listados no OWASP Top 10:
+---
 
-1. **A01:2025 - Broken Access Control (Controle de Acesso Quebrado)**:
-   - *Onde se aplica*: Na verificação de sessão implementada via script no `dashboard.html`.
-   - *Como mitigar*: O acesso à página interna exige validação prévia do estado de autenticação armazenado (`sessionStorage`), redirecionando imediatamente usuários não autorizados para a tela de login.
+## 🛠️ Tecnologias e Ferramentas Utilizadas
+* **Frontend:** HTML5, CSS3, JavaScript (Vanilla).
+* **Controle de Versão:** Git e GitHub.
+* **Infraestrutura & Cloud (OCI):** Oracle Cloud Infrastructure - Instâncias Dedicadas (`VM001` e `VM002`).
+* **Hardware das Instâncias:** VM.Standard.E2.1.Micro (1 OCPU, 1 GB RAM).
+* **Sistema Operacional:** Ubuntu Linux.
+* **Observabilidade e Monitoramento:** Prometheus, Grafana e Loki.
+* **Automação (CI/CD):** GitHub Actions e SSH Deployment.
+* **Servidor Web:** Nginx.
 
-2. **A07:2025 - Identification and Authentication Failures (Falhas de Identificação e Autenticação)**:
-   - *Onde se aplica*: Nos fluxos de entrada (`index.html`) e saída (`dashboard.html`).
-   - *Como mitigar*: O sistema exige o preenchimento estrito de credenciais válidas e limpa o escopo de sessão de forma segura ao acionar o botão de logout, além da proteção perimetral na VM com Fail2Ban contra ataques de força bruta na porta SSH.
+---
 
-3. **A05:2025 - Security Misconfiguration (Inconfiguração de Segurança)**:
-   - *Onde se aplica*: Na arquitetura de rede e publicação dos serviços.
-   - *Como mitigar*: Isolamento rígido de portas de backend de observabilidade, uso de HTTPS com Certbot no Nginx com redirecionamento forçado, e ausência total de credenciais hardcoded no repositório.
+## ☁️ Arquitetura de Servidores na OCI (Oracle Cloud Infrastructure)
+A infraestrutura em nuvem do projeto foi dimensionada em instâncias separadas executando **Ubuntu Linux** (Shape `VM.Standard.E2.1.Micro` com 1 OCPU e 
+
+1 GB de RAM) para isolar as camadas de aplicação e monitoramento:
+1. **ProjetoVM001 (Produção / Aplicação Web):**
+   * **IP Público:** `167.234.236.107`
+   * **Hardware:** 1 OCPU / 1 GB RAM (`VM.Standard.E2.1.Micro`)
+   * **Sistema Operacional:** Ubuntu Linux
+   * **Função:** Hospedagem da aplicação web principal, tela de login, painel administrativo e servidor web Nginx.
+
+2. **ProjetoVM002 (Observabilidade e Monitoramento):**
+   * **IP Público:** `163.176.142.188`
+   * **Hardware:** 1 OCPU / 1 GB RAM (`VM.Standard.E2.1.Micro`)
+   * **Sistema Operacional:** Ubuntu Linux
+   * **Função:** Ambiente dedicado à observabilidade e métricas de infraestrutura.
+   * **Stack Tecnológica:** 
+     * **Prometheus:** Coleta e armazenamento de métricas de desempenho e integridade dos sistemas.
+     * **Grafana:** Visualização de dados, criação de dashboards analíticos e alertas operacionais.
+     * **Loki:** Sistema de agregação e consulta centralizada de logs dos serviços.
+
+---
+
+## 🚀 Estrutura do Sistema Web
+O projeto web é composto por duas telas principais que gerenciam o fluxo de acesso restrito:
+1. **`index.html` (Tela de Login):** Interface contendo validação de campos obrigatórios, suporte ao evento de submissão via tecla `Enter` e integração com a identidade visual da UNCISAL.
+2. **`dashboard.html` (Painel Administrativo):** Área restrita protegida por validação de sessão, exibindo dados institucionais, informações do discente, logotipo oficial e botão seguro de encerramento de sessão (Logout).
+
+---
+
+## ⚙️ Configuração e Execução Local
+Caso deseje executar o projeto localmente para fins de teste:
+1. Clone o repositório em sua máquina:
+   ```bash
+   git clone [https://github.com/adelson03/ProjetoAplicado_Adelson.git](https://github.com/adelson03/ProjetoAplicado_Adelson.git)
