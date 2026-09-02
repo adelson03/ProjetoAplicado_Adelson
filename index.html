@@ -5,40 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Projeto Aplicado</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 350px; }
-        h2 { text-align: center; color: #333; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: #666; font-size: 14px; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; background-color: #0066cc; border: none; color: white; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; }
-        button:hover { background-color: #004fb3; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f6f9; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+        }
+        .login-card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            width: 380px; 
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .logo-container img {
+            max-height: 55px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        h2 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            color: #555; 
+            font-size: 13px; 
+            font-weight: bold;
+        } 
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            font-size: 14px;
+        } 
+        button { 
+            width: 100%; 
+            padding: 10px; 
+            background: #0066cc; 
+            border: none; 
+            color: white; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 15px;
+            margin-top: 10px;
+        } 
+        button:hover { 
+            background: #004fb3; 
+        }
+        .academic-info {
+            margin-top: 25px; 
+            font-size: 11px; 
+            color: #666; 
+            text-align: center; 
+            border-top: 1px solid #eee; 
+            padding-top: 12px; 
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
     <div class="login-card">
+        <div class="logo-container">
+            <img src="logo_uncisal.png" alt="Logo UNCISAL">
+        </div>
+
         <h2>Área Restrita</h2>
-        <div class="form-group">
-            <label for="username">Usuário</label>
-            <input type="text" id="username" placeholder="Digite seu usuário">
+        
+        <!-- Adicionado o onsubmit para capturar a tecla Enter -->
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" placeholder="Digite seu usuário" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="••••••••••••" required>
+            </div>
+            <!-- Botão alterado para type="submit" -->
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="academic-info">
+            <strong>Curso:</strong> SEGURANÇA DA INFORMAÇÃO E ANÁLISE FORENSE<br>
+            <strong>Matéria:</strong> Projeto Aplicado: Práticas de Mercado<br>
+            <strong>Professor:</strong> Ziraldo Aurélio Cardoso de Oliveira<br>
+            <strong>Aluno/Desenvolvedor:</strong> Adelson Eleotério Siqueira dos Santos
         </div>
-        <div class="form-group">
-            <label for="password">Senha</label>
-            <input type="password" id="password" placeholder="••••••••••••">
-        </div>
-        <button onclick="handleLogin()">Entrar</button>
     </div>
+
     <script>
-        function handleLogin() {
+        function handleLogin(event) {
+            // Previne o comportamento padrão de recarregamento do form
+            event.preventDefault();
+
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
             
-            // Validação de exemplo para fins de portfólio (substituir por API/Auth segura em produção)
-            if (user === "admin" && pass === "SUA_SENHA_SEGURA_AQUI") {
-                sessionStorage.setItem('auth_token', 'token_ativo_seguro');
-                window.location.href = "dashboard.html";
+            if (user.trim() !== "" && pass.trim() !== "") {
+                try {
+                    sessionStorage.setItem('isAuthenticated', 'true');
+                } catch (e) {
+                    console.log("Storage restrito pelo navegador.");
+                }
+                window.location.href = 'dashboard.html';
             } else {
-                alert('Credenciais inválidas!');
+                alert('Por favor, preencha o usuário e a senha.');
             }
         }
     </script>

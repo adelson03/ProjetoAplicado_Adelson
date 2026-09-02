@@ -3,36 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - SRE Observabilidade</title>
+    <title>Painel - Projeto Aplicado</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
-        .header { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .content { margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        button { background-color: #dc3545; border: none; color: white; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        button:hover { background-color: #a71d2a; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f6f9; 
+            margin: 0; 
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .dashboard-container { 
+            background: white; 
+            padding: 35px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-height: 60px; /* Ajuste a altura conforme necessário */
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        h1 { 
+            color: #333; 
+            font-size: 22px; 
+            text-align: center; 
+            margin-bottom: 15px;
+        }
+        p { 
+            color: #555; 
+            font-size: 14px; 
+            line-height: 1.5; 
+            margin-bottom: 10px;
+        }
+        .info-box {
+            background-color: #fafafa;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+        .info-box strong {
+            color: #333;
+        }
+        .btn-logout { 
+            padding: 10px 20px; 
+            background: #cc0000; 
+            border: none; 
+            color: white; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            display: block;
+            margin: 0 auto;
+        } 
+        .btn-logout:hover { 
+            background: #990000; 
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>Painel de Controle - VM001</h2>
-        <button onclick="handleLogout()">Sair</button>
-    </div>
-    <div class="content">
-        <h3>Bem-vindo ao Sistema de Observabilidade</h3>
-        <p>Status da infraestrutura: <strong>Operacional (Secure by Design)</strong></p>
-        <p>Servidor Web Nginx, Fail2Ban e Promtail ativos e integrados com a central VM002.</p>
+    <div class="dashboard-container">
+        <!-- Logo da Universidade no topo -->
+        <div class="logo-container">
+            <img src="logo_uncisal.png" alt="Logo UNCISAL">
+        </div>
+
+        <h1>Painel Administrativo - Área Restrita</h1>
+        <p>Bem-vindo ao sistema de monitoramento e controle seguro (Eixo 3).</p>
+        <p>Sessão validada com sucesso para o ambiente acadêmico da UNCISAL.</p>
+        
+        <!-- Bloco de informações formatado -->
+        <div class="info-box">
+            <strong>Curso:</strong> SEGURANÇA DA INFORMAÇÃO E ANÁLISE FORENSE<br>
+            <strong>Matéria:</strong> Projeto Aplicado: Práticas de Mercado<br>
+            <strong>Professor:</strong> Ziraldo Aurélio Cardoso de Oliveira<br>
+            <strong>Aluno/Desenvolvedor:</strong> Adelson Eleotério Siqueira dos Santos<br>
+            <strong>Matrícula:</strong> 20252ESPSIAF0001
+        </div>
+
+        <button class="btn-logout" onclick="handleLogout()">Sair (Logout)</button>
     </div>
 
     <script>
-        // Validação de Sessão (Proteção OWASP contra Acesso Não Autorizado)
-        if (!sessionStorage.getItem('auth_token')) {
-            alert('Acesso negado! Faça login novamente.');
-            window.location.href = "index.html";
-        }
-
+        // Função de logout mantida
         function handleLogout() {
-            sessionStorage.removeItem('auth_token');
-            window.location.href = "index.html";
+            try {
+                sessionStorage.removeItem('isAuthenticated');
+            } catch (e) {}
+            window.location.href = 'index.html';
         }
     </script>
 </body>
