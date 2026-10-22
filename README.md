@@ -58,6 +58,8 @@ Caso deseje executar o projeto localmente para fins de teste:
    ```bash
    git clone [https://github.com/adelson03/ProjetoAplicado_Adelson.git](https://github.com/adelson03/ProjetoAplicado_Adelson.git)
 
+---
+
 ## 🛡️ Mitigação de Falhas (OWASP Top 10)
 
 Em conformidade com os requisitos do Projeto Aplicado, foram documentadas e mitigadas as seguintes vulnerabilidades do **OWASP Top 10**:
