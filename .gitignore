@@ -1,0 +1,8 @@
+# Logs e ficheiros temporários
+*.log
+.DS_Store
+
+# Chaves privadas e credenciais
+*.pem
+*.key
+id_rsa*
