@@ -58,7 +58,7 @@ Caso deseje executar o projeto localmente para fins de teste:
    ```bash
    git clone [https://github.com/adelson03/ProjetoAplicado_Adelson.git](https://github.com/adelson03/ProjetoAplicado_Adelson.git)
 
-   ## 🛡️ Mitigação de Falhas (OWASP Top 10)
+## 🛡️ Mitigação de Falhas (OWASP Top 10)
 
 Em conformidade com os requisitos do Projeto Aplicado, foram documentadas e mitigadas as seguintes vulnerabilidades do **OWASP Top 10**:
 
@@ -68,3 +68,4 @@ Em conformidade com os requisitos do Projeto Aplicado, foram documentadas e miti
    * **Mitigação:** Aplicação de validação rigorosa de entradas de formulário e tratamento adequado de caracteres nos campos de autenticação.
 3. **A05:2021 – Security Misconfiguration (Configuração Incorreta de Segurança):**
    * **Mitigação:** Endurecimento (*hardening*) do servidor web Nginx, com imposição estrita de protocolos TLS 1.2 e 1.3, redirecionamento permanente de HTTP para HTTPS (porta 301) e isolamento rigoroso de privilégios e ambientes na Oracle Cloud Infrastructure (OCI).
+
