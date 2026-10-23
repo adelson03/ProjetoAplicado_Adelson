@@ -69,5 +69,5 @@ Em conformidade com os requisitos do Projeto Aplicado, foram documentadas e miti
 2. **A03:2021 – Injection (Injeção):**
    * **Mitigação:** Aplicação de validação rigorosa de entradas de formulário e tratamento adequado de caracteres nos campos de autenticação.
 3. **A05:2021 – Security Misconfiguration (Configuração Incorreta de Segurança):**
-   * **Mitigação:** Endurecimento (*hardening*) do servidor web Nginx, com imposição estrita de protocolos TLS 1.2 e 1.3, redirecionamento permanente de HTTP para HTTPS (porta 301) e isolamento rigoroso de privilégios e ambientes na Oracle Cloud Infrastructure (OCI).
+   * **Mitigação:** Endurecimento (*hardening*) do servidor web Nginx, desativação de assinaturas de versão e imposição de cabeçalhos de segurança TLS/SSL.
 
